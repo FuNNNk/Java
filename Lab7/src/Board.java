@@ -26,7 +26,7 @@ public class Board {
         }
     }
 
-    public synchronized int  extractToken(int contor){
+    public synchronized int extractToken(int contor){
         int tokenextracted = board.get(contor).numberOfToken;
         return tokenextracted;
     }

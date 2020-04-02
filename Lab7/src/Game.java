@@ -5,7 +5,7 @@ public class Game {
         Player player2 = new Player("Mircea", board);
 
 
-        player1.run();
-        player2.run();
+        new Thread(player1).start();
+        new Thread(player2).start();
     }
 }
