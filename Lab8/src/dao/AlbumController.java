@@ -17,9 +17,9 @@ public class AlbumController {
         Statement stmt = null;
         try{
             stmt = connection.createStatement();
-            stmt.executeUpdate("insert into " + dbName + " values(" + name + ',' + artist_id + ',' + releaseYear + ");");
+            stmt.executeUpdate("insert into " + dbName + "(name, artist_id,release_year) values( '" + name + "','" + artist_id + "','" + releaseYear + "');");
         }catch (SQLException e){
-            System.out.println("Eroare");
+            System.out.println("Eroare 1");
         }
 
     }
@@ -27,12 +27,14 @@ public class AlbumController {
     public void findByArtist(int artistId){
         try {
             Statement statement = connection.createStatement();
-            String sql = "select * from " + dbName + " where artist_id is " + artistId + ";";
+            String sql = "select * from " + dbName + " where artist_id = '" + artistId + "';";
             ResultSet resultSet = statement.executeQuery(sql);
 
             while(resultSet.next()){
                 int id = resultSet.getInt("artist_id");
-                System.out.println(id);
+                String name = resultSet.getString("name");
+                int releaseYear = resultSet.getInt("release_year");
+                System.out.println(id + " " + name + " " + releaseYear);
             }
         } catch (SQLException e) {
             e.printStackTrace();

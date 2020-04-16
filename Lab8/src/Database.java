@@ -25,8 +25,11 @@ public class Database {
     public Database() {
         connection = getConnection();
         ArtistController artistController = new ArtistController(connection);
-        artistController.create("Juan", "Spain");
-//        artistController.findByName("Juan");
+//        artistController.create("Juan", "Spain");
+        int artist_id = artistController.findByName("Juan");
+        AlbumController albumController = new AlbumController(connection);
+        albumController.create("Anatolya", 2, 1995);
+        albumController.findByArtist(2);
     }
 
 
