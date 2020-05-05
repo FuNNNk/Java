@@ -12,8 +12,14 @@ public class GameServer {
             serverSocket=new ServerSocket(PORT);
             while(true){
                 System.out.println("Waiting for a client");
+                serverSocket.setSoTimeout(10000);
                 Socket socket = serverSocket.accept();
+
                 new ClientThread(socket).start();
+                if(ClientThread.returnStop().equals("stop")) {
+                    serverSocket.close();
+                    break;
+                }
             }
         }catch (IOException e){
             System.err.println(e);

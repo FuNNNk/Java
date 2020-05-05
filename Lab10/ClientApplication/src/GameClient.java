@@ -17,14 +17,18 @@ public class GameClient {
                 BufferedReader in = new BufferedReader ( new InputStreamReader(socket.getInputStream()))
         )
         {
-            Scanner scanner = new Scanner(System.in);
-            String request = scanner.nextLine();
-            if(request == "exit")
-                System.exit(0);
-            out.println(request);// Wait the response from the server ("Hello World!")
+            while(true) {
+                Scanner scanner = new Scanner(System.in);
+                String request = scanner.nextLine();
+                out.println(request);// Wait the response from the server ("Hello World!")
+                if (request.equals("exit"))
+                    System.exit(0);
 
-            String response = in.readLine();
-            System.out.println(response);
+                String response = in.readLine();
+                System.out.println(response);
+                if (request.equals("stop"))
+                    System.exit(0);
+            }
         } catch (UnknownHostException e) {
             System.err.println("No server listening... " + e);
         } catch (IOException e) {
