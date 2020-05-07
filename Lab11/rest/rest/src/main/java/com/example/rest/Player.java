@@ -1,30 +1,34 @@
 package com.example.rest;
 
-public class Player {
-    private int id;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name = "players")
+
+@Entity
+public class Player implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(insertable = false, name = "idplayers", nullable = false)
+    private Integer idplayers;
+
+    @Column(name = "name", nullable = false)
     private String name;
-    public Player(int id, String name) {
-        this.id= id;
-        this.name=name;
+
+    public Integer getIdplayers() {
+        return idplayers;
+    }
+
+    public void setIdplayers(Integer idplayers) {
+        this.idplayers = idplayers;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public String getName(){
-        return this.name;
     }
 }
